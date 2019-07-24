@@ -8,7 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface CategoryService {
-    String API_ROUTE = "/categories";
+    String API_ROUTE = "/Jfelix61/heads-up-json-server/categories";
 
     @GET(API_ROUTE)
     Call<List<Category>> getCategories();
