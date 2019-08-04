@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity"
+    tools:context=".activities.Activity_Main.Activity_Main"
     android:background="#73CFE3"
     >
 
@@ -22,30 +22,10 @@
             android:textColor="#FFFFFF"
             android:textSize="40dp"
             android:textAlignment="center"/>
-        <ImageView
-            android:id="@+id/actores"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/Actores"
-            android:layout_gravity="center"
-            android:layout_marginVertical="20dp"
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/category_list"
             />
-<!--
-        <ImageView
-            android:id="@+id/cantantes"
-            android:layout_width="wrap_content"
-            android:layout_height="189dp"
-            android:layout_gravity="center"
-            android:layout_marginVertical="15dp"
-            android:src="@drawable/cantantes" />
-        <ImageView
-            android:id="@+id/deportistas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/deportistas"
-            android:layout_gravity="center"
-            android:layout_marginVertical="15dp"
-            />
--->
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

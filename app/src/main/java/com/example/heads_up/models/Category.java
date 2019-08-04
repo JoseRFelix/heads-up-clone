@@ -5,6 +5,15 @@ public class Category {
     private int id;
     private String categoryName;
     private String[] categoryContent;
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public int getId() {
         return id;
