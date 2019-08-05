@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#73CFE3">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="757dp"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-medium"
+            android:text="Lionel Messi"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="70dp"
+            android:gravity="center"
+            ></TextView>
+        <TextView
+        android:layout_width="757dp"
+        android:layout_height="match_parent"
+        android:fontFamily="sans-serif-light"
+        android:text="Deportistas"
+        android:textColor="#FFFFFF"
+        android:textSize="50dp"
+        android:layout_marginRight="10dp"></TextView>
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

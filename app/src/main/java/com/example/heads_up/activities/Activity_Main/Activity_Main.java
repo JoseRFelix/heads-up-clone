@@ -1,10 +1,10 @@
-package com.example.heads_up.activities;
+package com.example.heads_up.activities.Activity_Main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.AdapterView;
 
 import com.example.heads_up.R;
 import com.example.heads_up.models.Category;
@@ -19,10 +19,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class Activity_Main extends AppCompatActivity {
     ListView list;
-    ArrayList<String> titles = new ArrayList<>();
-    ArrayAdapter arrayAdapter;
+    ArrayList<Category> categoryArray = new ArrayList<>();
+    CategoryListViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +30,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, titles);
         list = findViewById(R.id.category_list);
+        list.setDivider(null);
 
-        list.setAdapter(arrayAdapter);
+        adapter = new CategoryListViewAdapter(Activity_Main.this, categoryArray);
+
+        list.setAdapter(adapter);
 
         getCategories();
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
     }
 
     private void getCategories() {
@@ -51,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                 for(Category category : response.body()) {
-                    titles.add(category.getCategoryName());
+                    categoryArray.add(category);
                 }
 
-                arrayAdapter.notifyDataSetChanged();
+               adapter.notifyDataSetChanged();
             }
 
             @Override
