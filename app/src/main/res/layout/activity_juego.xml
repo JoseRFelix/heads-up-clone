@@ -4,7 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#73CFE3">
+    android:background="@drawable/bg_gradient_rounded"
+    android:orientation="horizontal"
+    android:paddingLeft="40dp"
+    android:paddingTop="10dp"
+    tools:ignore="MissingConstraints"
+    android:layout_marginLeft="-25dp"
+    android:layout_marginRight="-25dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"

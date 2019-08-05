@@ -4,18 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/BackgroundBlue"
-    android:gravity="center"
+    android:background="@drawable/bg_gradient_rounded"
     android:orientation="vertical"
-    android:padding="80dp">
+    android:gravity="center"
+    android:paddingTop="60dp"
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp"
+    android:paddingBottom="170dp"
+    tools:ignore="MissingConstraints"
+    android:layout_marginTop="-25dp"
+>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:text="Fin del juego!"
+        android:textColor="#fff"
+        android:textSize="40dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
         android:layout_marginBottom="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:fontFamily="@font/poppins_light"
+
+        >
 
         <TextView
             android:id="@+id/correct_Strings_Label"
@@ -26,16 +43,15 @@
             android:text="Correctas"
             android:textColor="#fff"
             android:textSize="40sp"
-            android:textStyle="bold|italic" />
-
+        />
         <TextView
             android:id="@+id/number_of_correct_strings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#00FF00"
             android:gravity="center_horizontal"
-            android:textColor="@android:color/holo_green_light"
+            android:fontFamily="@font/poppins_semibold"
             android:textSize="40sp"
-            android:textStyle="bold|italic"
             tools:text="10" />
 
     </LinearLayout>
@@ -43,9 +59,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-
-        android:gravity="center"
+        android:fontFamily="@font/poppins_light"
         android:orientation="vertical">
 
         <TextView
@@ -57,17 +71,16 @@
             android:text="Incorrectas"
             android:textColor="#fff"
             android:textSize="40sp"
-            android:textStyle="bold|italic"
             tools:text="Incorrectas" />
 
         <TextView
             android:id="@+id/number_of_skipped_strings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
             android:gravity="center_horizontal"
-            android:textColor="@android:color/holo_red_light"
+            android:textColor="#FF0000"
             android:textSize="40sp"
-            android:textStyle="bold|italic"
             tools:text="3" />
     </LinearLayout>
 </LinearLayout><!--<ImageView--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:src="@drawable/divider"/>--><!--<ListView--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:id="@+id/strings_list_view">--><!--<TextView--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:padding="5dp"--><!--android:id="@+id/string"--><!--android:textColor="#fff"/>--><!--</ListView>-->
