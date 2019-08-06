@@ -1,5 +1,6 @@
 package com.example.heads_up.activities.Activity_Main;
 
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.heads_up.R;
+import com.example.heads_up.activities.Activity_Juego.Activity_Juego;
 import com.example.heads_up.models.Category;
 import com.example.heads_up.services.CategoryService;
 
@@ -22,13 +24,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Activity_Main extends AppCompatActivity {
+    final long TIMER_TIME = 5000;  //5 seg
+
     ListView list;
     ArrayList<Category> categoryArray = new ArrayList<>();
+    Category selectedCategory;
     CategoryListViewAdapter adapter;
 
     private TextView countdownText;
     private CountDownTimer countDownTimer;
-    private long timeLeftinMilliseconds = 5000; //5 seg
+    private long timeLeftinMilliseconds = TIMER_TIME;
     private boolean timerRunning;
 
     @Override
@@ -51,15 +56,12 @@ public class Activity_Main extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                selectedCategory = categoryArray.get(position);
+                startTimer();
+                updateTimer();
             }
         });
-
-        startTimer();
-
-        updateTimer();
     }
-
 
     public void startTimer(){
         countDownTimer = new CountDownTimer(timeLeftinMilliseconds, 1000) {
@@ -71,19 +73,23 @@ public class Activity_Main extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                countdownText.setText("¡Se acabó el tiempo!");
+                countdownText.setText("");
+
+                timeLeftinMilliseconds = TIMER_TIME;
+
+                Intent intentJuego = new Intent(Activity_Main.this, Activity_Juego.class);
+                intentJuego.putExtra("Category", selectedCategory);
+                startActivity(intentJuego);
             }
         }.start();
 
         timerRunning = true;
     }
 
-
     public void updateTimer () {
         int seconds = (int) timeLeftinMilliseconds % 5000 / 1000;
 
         String timeLeftText;
-
 
         timeLeftText = "" + seconds;
 

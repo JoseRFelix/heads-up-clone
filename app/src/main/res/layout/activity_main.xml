@@ -59,10 +59,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/countdownText"
             android:text=""
-            android:textColor="#74FF0000"
+            android:textColor="@color/colorPrimary"
             android:textSize="150dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:elevation="1dp"
             />
 
         <ListView

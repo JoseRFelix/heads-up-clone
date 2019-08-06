@@ -11,6 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
+        <activity
+            android:name=".activities.Activity_Juego.Activity_Juego"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".activities.Activity_Result.Activity_Result"
+            ></activity>
         <activity android:name=".activities.Activity_Main.Activity_Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

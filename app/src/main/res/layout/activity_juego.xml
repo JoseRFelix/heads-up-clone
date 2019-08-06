@@ -17,26 +17,59 @@
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints">
 
+
         <TextView
-            android:layout_width="757dp"
-            android:layout_height="match_parent"
-            android:fontFamily="sans-serif-medium"
-            android:text="Lionel Messi"
-            android:textAlignment="center"
+            android:id="@+id/game_category_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="Deportistas"
             android:textColor="#FFFFFF"
-            android:textSize="70dp"
-            android:gravity="center"
-            ></TextView>
+            android:textSize="35dp"></TextView>
+
         <TextView
-        android:layout_width="757dp"
-        android:layout_height="match_parent"
-        android:fontFamily="sans-serif-light"
-        android:text="Deportistas"
-        android:textColor="#FFFFFF"
-        android:textSize="50dp"
-        android:layout_marginRight="10dp"></TextView>
+            android:id="@+id/timer_juego"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/poppins_light"
+            android:textColor="#FFF"
+            android:textSize="30dp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="Lionel Messi"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="70dp"
+                android:id="@+id/current_category_word"></TextView>
+
+            <Button
+                android:id="@+id/countdownButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="-45dp"
+                android:background="#00FFFFFF"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="#FFF"
+                android:textSize="40dp"
+                tools:text="EMPEZAR"
+                android:padding="5dp"/>
+        </LinearLayout>
     </RelativeLayout>
-
 </android.support.constraint.ConstraintLayout>
