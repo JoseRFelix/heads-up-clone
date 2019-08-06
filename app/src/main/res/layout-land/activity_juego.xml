@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_rounded"
+    android:orientation="horizontal"
+    android:paddingLeft="40dp"
+    android:paddingTop="10dp"
+    tools:ignore="MissingConstraints"
+    android:layout_marginLeft="-25dp"
+    android:layout_marginRight="-25dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="Deportistas"
+                android:textColor="#FFFFFF"
+                android:textSize="35dp"></TextView>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="Lionel Messi"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="70dp"></TextView>
+
+            <TextView
+                android:id="@+id/timer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:layout_marginBottom="10dp"
+                android:textColor="#FFF"
+                android:textSize="30dp"/>
+
+            <Button
+                android:id="@+id/countdownButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="-45dp"
+                android:background="#00FFFFFF"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="#FFF"
+                android:textSize="40dp"
+                tools:text="EMPEZAR"
+                android:padding="5dp"/>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
