@@ -23,6 +23,8 @@ public class Activity_Result extends AppCompatActivity {
         final int categoryLength = (int) getIntent().getSerializableExtra("categoryLength");
         final MediaPlayer mpApplause = MediaPlayer.create(this, R.raw.applause);
 
+        mpApplause.start();
+
         final TextView correctAnswersText = (TextView) findViewById(R.id.number_of_correct_strings);
         final TextView incorrectAnswersText = (TextView) findViewById(R.id.number_of_skipped_strings);
         final Button goBack = findViewById(R.id.activity_result_go_back);

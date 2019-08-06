@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.heads_up.R;
@@ -43,12 +44,12 @@ public class Activity_Juego extends AppCompatActivity implements SensorEventList
     boolean eventFlag = false;
     int EVENT_DELAY = 2000;
 
-    final MediaPlayer mpIncorrect = MediaPlayer.create(this, R.raw.incorrect);
-    final MediaPlayer mpCorrect = MediaPlayer.create(this, R.raw.correct);
-    final MediaPlayer mpTimeOver = MediaPlayer.create(this, R.raw.timeover);
+    private MediaPlayer mpIncorrect;
+    private MediaPlayer mpCorrect;
+    private MediaPlayer mpTimeOver;
 
-
-    private HashMap<String, Integer> estado =  new HashMap<>();
+    private int palabrasCorrectas = 0;
+    private int palabraActual = 0;
     private String[] words;
     private TextView currentWord;
 
@@ -65,6 +66,9 @@ public class Activity_Juego extends AppCompatActivity implements SensorEventList
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_juego);
 
         handler = new Handler();
@@ -73,13 +77,14 @@ public class Activity_Juego extends AppCompatActivity implements SensorEventList
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         magnetometer = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
+        mpIncorrect = MediaPlayer.create(this, R.raw.incorrect);
+        mpCorrect = MediaPlayer.create(this, R.raw.correct);
+         mpTimeOver = MediaPlayer.create(this, R.raw.timeover);
+
         final Category category = (Category) getIntent().getSerializableExtra("Category");
         final TextView categoryText = (TextView) findViewById(R.id.game_category_text);
 
         categoryText.setText(category.getCategoryName());
-
-        estado.put("correctas", 0);
-        estado.put("palabraActual", 0);
 
         words = RandomizeArray(category.getCategoryContent());
 
@@ -97,7 +102,7 @@ public class Activity_Juego extends AppCompatActivity implements SensorEventList
         initListeners();
 
         currentWord = findViewById(R.id.current_category_word);
-        currentWord.setText(words[estado.get("palabraActual")]);
+        currentWord.setText(words[palabraActual]);
 
         startTimer();
         updateTimer();
@@ -115,10 +120,11 @@ public class Activity_Juego extends AppCompatActivity implements SensorEventList
 
     public void FinishGame() {
         Intent intentResult = new Intent(Activity_Juego.this, Activity_Result.class);
-        intentResult.putExtra("correctas", estado.get("correctas"));
+        intentResult.putExtra("correctas", palabrasCorrectas);
         intentResult.putExtra("categoryLength", words.length);
         startActivity(intentResult);
 
+        countDownTimer.cancel();
 
         finish();
     }
@@ -192,27 +198,37 @@ public class Activity_Juego extends AppCompatActivity implements SensorEventList
             if (isTiltDownward() && eventFlag)
             {
                 eventFlag = false;
+                try{
+                    if(palabraActual == words.length){
+                        FinishGame();
 
-                if(estado.get("palabraActual") == words.length - 1){
+                    } else {
+                        palabraActual++;
+                        palabrasCorrectas++;
+
+                        mpCorrect.seekTo(0);
+                        mpCorrect.start();
+                        currentWord.setText(words[palabraActual]);
+                    }
+                } catch(IndexOutOfBoundsException e){
                     FinishGame();
-
-                } else {
-                    estado.put("palabraActual", estado.get("palabraActual") + 1);
-                    estado.put("correctas", estado.get("correctas") + 1);
-                    mpCorrect.start();
-                    currentWord.setText(words[estado.get("palabraActual")]);
                 }
+
             }
             else if (isTiltUpward() && eventFlag)
             {
                 eventFlag = false;
-
-                if(estado.get("palabraActual") == words.length -1){
+                try {
+                    if(palabraActual == words.length){
+                        FinishGame();
+                    } else {
+                        palabraActual++;
+                        mpIncorrect.seekTo(0);
+                        mpIncorrect.start();
+                        currentWord.setText(words[palabraActual]);
+                    }
+                } catch(IndexOutOfBoundsException e){
                     FinishGame();
-                } else {
-                    estado.put("palabraActual", estado.get("palabraActual") + 1);
-                    mpIncorrect.start();
-                    currentWord.setText(words[estado.get("palabraActual")]);
                 }
             }
         }

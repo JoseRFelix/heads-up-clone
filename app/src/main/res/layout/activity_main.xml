@@ -60,7 +60,7 @@
             android:id="@+id/countdownText"
             android:text=""
             android:textColor="@color/colorPrimary"
-            android:textSize="150dp"
+            android:textSize="120sp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:elevation="1dp"

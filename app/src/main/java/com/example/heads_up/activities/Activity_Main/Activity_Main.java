@@ -1,6 +1,7 @@
 package com.example.heads_up.activities.Activity_Main;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,9 @@ public class Activity_Main extends AppCompatActivity {
     Category selectedCategory;
     CategoryListViewAdapter adapter;
 
+    private MediaPlayer mpCountdownTick;
+    private MediaPlayer mpGo;
+
     private TextView countdownText;
     private CountDownTimer countDownTimer;
     private long timeLeftinMilliseconds = TIMER_TIME;
@@ -48,6 +52,9 @@ public class Activity_Main extends AppCompatActivity {
         list.setDivider(null);
 
         adapter = new CategoryListViewAdapter(Activity_Main.this, categoryArray);
+
+         mpCountdownTick = MediaPlayer.create(this, R.raw.countdowntick);
+         mpGo = MediaPlayer.create(this, R.raw.go);
 
         list.setAdapter(adapter);
 
@@ -73,13 +80,18 @@ public class Activity_Main extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                countdownText.setText("");
+                countdownText.setText("Start!");
+
+                mpGo.seekTo(0);
+                mpGo.start();
 
                 timeLeftinMilliseconds = TIMER_TIME;
 
                 Intent intentJuego = new Intent(Activity_Main.this, Activity_Juego.class);
                 intentJuego.putExtra("Category", selectedCategory);
                 startActivity(intentJuego);
+
+                countdownText.setText("");
             }
         }.start();
 
@@ -89,9 +101,16 @@ public class Activity_Main extends AppCompatActivity {
     public void updateTimer () {
         int seconds = (int) timeLeftinMilliseconds % 5000 / 1000;
 
-        String timeLeftText;
+        mpCountdownTick.seekTo(0);
+        mpCountdownTick.start();
 
-        timeLeftText = "" + seconds;
+
+        String timeLeftText;
+        if(seconds == 0){
+            timeLeftText = "Start!";
+        } else {
+           timeLeftText = "" + seconds;
+        }
 
         countdownText.setText(timeLeftText);
     }
