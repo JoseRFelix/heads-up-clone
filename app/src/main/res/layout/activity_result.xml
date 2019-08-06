@@ -84,4 +84,12 @@
             android:textSize="40sp"
              android:text=""/>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/activity_result_go_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Volver a jugar"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_button_gradient"/>
 </LinearLayout><!--<ImageView--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:src="@drawable/divider"/>--><!--<ListView--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:id="@+id/strings_list_view">--><!--<TextView--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:padding="5dp"--><!--android:id="@+id/string"--><!--android:textColor="#fff"/>--><!--</ListView>-->

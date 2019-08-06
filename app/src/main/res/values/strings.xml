@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Heads-Up</string>
     <string name="title_activity_juego">Juego</string>
+    <string name="btn_go_back">Volver a jugar</string>
 </resources>

@@ -70,6 +70,24 @@
                 android:textColor="#FFFFFF"
                 android:textSize="70dp"></TextView>
 
+
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/activity_juego_go_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/game_category_text"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="378dp"
+            android:layout_marginEnd="-56dp"
+            android:text="Go Back ←"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:clickable="true"/>
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

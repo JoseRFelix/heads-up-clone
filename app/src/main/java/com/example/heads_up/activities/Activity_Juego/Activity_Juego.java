@@ -5,17 +5,23 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.heads_up.R;
 import com.example.heads_up.activities.Activity_Main.Activity_Main;
 import com.example.heads_up.activities.Activity_Result.Activity_Result;
 import com.example.heads_up.models.Category;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -36,6 +42,11 @@ public class Activity_Juego extends AppCompatActivity implements SensorEventList
 
     boolean eventFlag = false;
     int EVENT_DELAY = 2000;
+
+    final MediaPlayer mpIncorrect = MediaPlayer.create(this, R.raw.incorrect);
+    final MediaPlayer mpCorrect = MediaPlayer.create(this, R.raw.correct);
+    final MediaPlayer mpTimeOver = MediaPlayer.create(this, R.raw.timeover);
+
 
     private HashMap<String, Integer> estado =  new HashMap<>();
     private String[] words;
@@ -74,6 +85,15 @@ public class Activity_Juego extends AppCompatActivity implements SensorEventList
 
         countdownText = (TextView) findViewById(R.id.timer_juego);
 
+        final TextView goBack = findViewById(R.id.activity_juego_go_back);
+
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         initListeners();
 
         currentWord = findViewById(R.id.current_category_word);
@@ -83,11 +103,22 @@ public class Activity_Juego extends AppCompatActivity implements SensorEventList
         updateTimer();
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            finish();
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
     public void FinishGame() {
         Intent intentResult = new Intent(Activity_Juego.this, Activity_Result.class);
         intentResult.putExtra("correctas", estado.get("correctas"));
         intentResult.putExtra("categoryLength", words.length);
         startActivity(intentResult);
+
 
         finish();
     }
@@ -161,13 +192,14 @@ public class Activity_Juego extends AppCompatActivity implements SensorEventList
             if (isTiltDownward() && eventFlag)
             {
                 eventFlag = false;
-                Log.d("aaa", "onSensorChanged: " + estado.get("palabraActual"));
-                if(estado.get("palabraActual") + 1 == words.length){
+
+                if(estado.get("palabraActual") == words.length - 1){
                     FinishGame();
+
                 } else {
                     estado.put("palabraActual", estado.get("palabraActual") + 1);
                     estado.put("correctas", estado.get("correctas") + 1);
-
+                    mpCorrect.start();
                     currentWord.setText(words[estado.get("palabraActual")]);
                 }
             }
@@ -175,11 +207,11 @@ public class Activity_Juego extends AppCompatActivity implements SensorEventList
             {
                 eventFlag = false;
 
-                if(estado.get("palabraActual") + 1 == words.length){
+                if(estado.get("palabraActual") == words.length -1){
                     FinishGame();
                 } else {
                     estado.put("palabraActual", estado.get("palabraActual") + 1);
-
+                    mpIncorrect.start();
                     currentWord.setText(words[estado.get("palabraActual")]);
                 }
             }
@@ -308,6 +340,7 @@ public class Activity_Juego extends AppCompatActivity implements SensorEventList
             @Override
             public void onFinish() {
                 countdownText.setText("¡Se acabó el tiempo!");
+                mpTimeOver.start();
                 FinishGame();
             }
         }.start();
