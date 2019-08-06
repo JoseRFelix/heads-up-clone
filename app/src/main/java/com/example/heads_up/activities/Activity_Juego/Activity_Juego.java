@@ -55,8 +55,6 @@ public class Activity_Juego extends AppCompatActivity {
         };
 
 
-
-
         countdownText = findViewById(R.id.timer);
 
 
